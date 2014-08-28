@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 120px 0 0 0;
+  font-family: Arial, sans-serif;
+  word-break: break-word;
+}
+
+.Component {
+  font-size: 20px;
+  padding: 1em;
+  max-width: 30em;
+  border: solid 2px #ccc;
+  margin: 0 auto;
+  color: #666;
+  border-radius: 1em 0 1em 1em;
+  position: relative;
+  overflow: hidden;
+}
+
+  .Component:after {
+    content: '';
+    display: block;
+    border-radius: 50% 0 50% 50%;
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    top: .2em;
+    right: .2em;
+    background: #bbb;
+  }
+
+  .Component h2 {
+    font-size: 2em;
+    margin: 0 0 .4em;
+  }
+
+  .Component img {
+    max-width: 100%;
+    height: auto;
+    border: solid .3em #ccc;
+    float: left;
+    margin: 0 1em 1em 0;
+  }
+
+  .Component p {
+    font-size: 1em;
+    margin: 1em 0 0 0;
+    text-align: left;
+  }
+
+input[type="range"] {
+  margin: 20px auto;
+  display: block;
+}
+
+.admin {
+  position: fixed;
+  background: #eee;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+p {
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  
+  .Component {
+    font-size: 14px; 
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  
+  .Component {
+    font-size: 10px;
+    width: auto;
+  }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="admin">
+  <input type="range" min="10" max="35" step="1" value="20" id="slider">
+
+  <p>Base unit is: <output id="op">20px</output><p>
+</div>
+
+<div class="Component" id="mod">
+  
+  <h2>Component Title</h2>
+  <img src="http://placekitten.com/250/250" alt="Kitten">
+  <p><strong>Use the range slider above</strong>.<br>The size of each element inside this module is controlled by a single unit: The <code>font-size</code>, which acts as a "root" for our em units, making everything inside the component proportionally resizable.</p>
+
+</div>
+
+<p class="p">Demo by Louis Lazaris. <a href="http://codepen.io/SitePoint/pen/BtJFn">CodePen</a> <a href="http://www.sitepoint.com/power-em-units-css/">See article</a> and <a href="https://medium.com/front-end-development/8f433689736f">original inspiration</a>.</p>
+
+
+<script>
+	var slider = document.getElementById('slider'),
+    mod = document.getElementById('mod'),
+    op = document.getElementById('op');
+
+slider.onchange = function () {
+  mod.style.fontSize = this.value + 'px';
+  op.innerHTML = this.value + 'px';
+}
+</script>
+</body>
+</html>
